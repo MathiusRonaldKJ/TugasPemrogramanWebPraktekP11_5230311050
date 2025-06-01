@@ -187,7 +187,7 @@
     <form method="post">
         <label for="nama_update">Nama Mahasiswa:</label><br>
         <input type="text" id="nama_update" name="nama_update" required><br>
-        <input type="submit" name="cari_nama_update" value="Cari Data Update ">
+        <input type="submit" name="cari_nama_update" value="Cari Data Untuk Update ">
     </form>
 
     <?php
@@ -221,7 +221,7 @@
     <form method="post">
         <label for="nama_delete">Nama Mahasiswa:</label><br>
         <input type="text" id="nama_delete" name="nama_delete" required><br>
-        <input type="submit" name="cari_nama_delete" value="Cari Data Hapus">
+        <input type="submit" name="cari_nama_delete" value="Cari Data Untuk Hapus">
     </form>
 
     <?php
