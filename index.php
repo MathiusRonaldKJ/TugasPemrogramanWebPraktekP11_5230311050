@@ -149,11 +149,39 @@
     </form>
 
     <h2 class="section-title">Cari Data Mahasiswa</h2>
-    <form action="cari.php" method="post">
+    <form method="post">
         <label for="nama_cari">Nama Mahasiswa:</label><br>
-        <input type="text" id="nama_cari" name="nama_mahasiswa" required><br>
-        <input type="submit" value="Cari Data">
+        <input type="text" id="nama_cari" name="nama_cari" required><br>
+        <input type="submit" name="cari_nama_cari" value="Cari Data">
     </form>
+
+    <?php
+    if (isset($_POST['cari_nama_cari'])) {
+        $nama = mysqli_real_escape_string($connection, $_POST['nama_cari']);
+        $query = mysqli_query($connection, "SELECT * FROM tb_mahasiswa WHERE nama_mahasiswa LIKE '%$nama%'");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($data = mysqli_fetch_assoc($query)) {
+    ?>
+                <form>
+                    <label>Nama Mahasiswa:</label><br>
+                    <input type="text" value="<?= htmlspecialchars($data['nama_mahasiswa']) ?>" disabled><br>
+
+                    <label>Prodi:</label><br>
+                    <input type="text" value="<?= htmlspecialchars($data['prodi_mahasiswa']) ?>" disabled><br>
+
+                    <label>Semester:</label><br>
+                    <input type="text" value="<?= htmlspecialchars($data['semester_mahasiswa']) ?>" disabled><br><br>
+                </form>
+                <hr>
+    <?php
+            }
+        } else {
+            echo "<p class='error'>Data tidak ditemukan untuk nama: " . htmlspecialchars($nama) . "</p>";
+        }
+    }
+    ?>
+
 
     <h2 class="section-title">Update Data Mahasiswa</h2>
     <form method="post">
@@ -226,8 +254,6 @@
         }
     }
     ?>
-
-
 
 </body>
 </html>
